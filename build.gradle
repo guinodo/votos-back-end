@@ -1,0 +1,38 @@
+buildscript {
+    ext {
+        springBootDependenciesVersion = "2.4.5"
+        springBootReatorNettyVersion = "2.5.0"
+        swaggerVersion = "3.0.0"
+        mockitoVersion = "3.10.0"
+        reactorTestVersion = "3.4.6"
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+}
+
+plugins {
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+    id "jacoco"
+    id 'java'
+}
+
+subprojects {
+    group 'br.com.guinodo'
+    version '1.0-SNAPSHOT'
+    sourceCompatibility = "11"
+    targetCompatibility = "11"
+
+    repositories {
+        mavenCentral()
+    }
+
+    afterEvaluate {
+        repositories {
+            jcenter()
+        }
+    }
+
+}

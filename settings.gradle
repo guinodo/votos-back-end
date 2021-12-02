@@ -1,0 +1,6 @@
+rootProject.name = 'votos-back-end'
+
+include ':infra'
+include ':domain'
+include ':core'
+
