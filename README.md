@@ -6,4 +6,4 @@
 
 ## Architecture
 
-The project consists of 3 packages: *core*, *domain* and *infra*.
+The project consists of 3 packages (***Clean Architecture***) : *core*, *domain* and *infra*.
