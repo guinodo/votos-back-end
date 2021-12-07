@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v1/pauta")
 public class PautaController {
 
+
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     private ResponseEntity<?> save(@RequestBody final Pauta pauta) {

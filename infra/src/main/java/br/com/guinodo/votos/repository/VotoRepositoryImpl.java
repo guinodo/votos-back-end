@@ -1,6 +1,5 @@
 package br.com.guinodo.votos.repository;
 
-import br.com.guinodo.votos.domain.TipoVoto;
 import br.com.guinodo.votos.domain.Voto;
 import br.com.guinodo.votos.entity.VotoEntity;
 import org.springframework.stereotype.Repository;
@@ -16,6 +15,6 @@ public class VotoRepositoryImpl implements VotoRepository {
 
     @Override
     public void save(Voto voto) {
-//        repository.save(new VotoEntity());
+        repository.save(new VotoEntity());
     }
 }
