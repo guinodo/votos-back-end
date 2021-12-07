@@ -2,13 +2,24 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
+
+  h2:
+    console:
+      enabled: true
 
   datasource:
-    url: jdbc:h2:mem:mydb;DB_CLOSE_DELAY=-1;MODE=MYSQL
-
+    username: sa
+    password: password
+    url: jdbc:h2:file:~/votoDB;IFEXISTS=FALSE;
+    driver-class-name: org.h2.Driver
+    platform: org.hibernate.dialect.H2Dialect
 
   jackson:
     property-naming-strategy: SNAKE_CASE
     deserialization:
       fail-on-unknown-properties: false
+
+server:
+  servlet:
+    context-path: /api
