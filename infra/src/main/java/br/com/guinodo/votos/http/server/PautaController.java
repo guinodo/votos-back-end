@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/pauta")
+@RequestMapping("/v1/pauta")
 public class PautaController {
 
     @PostMapping
