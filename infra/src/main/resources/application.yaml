@@ -23,3 +23,7 @@ spring:
 server:
   servlet:
     context-path: /api
+
+api:
+  cpf:
+    url: https://user-info.herokuapp.com/users

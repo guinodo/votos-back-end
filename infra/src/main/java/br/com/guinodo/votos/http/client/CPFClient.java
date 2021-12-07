@@ -2,12 +2,21 @@ package br.com.guinodo.votos.http.client;
 
 import br.com.guinodo.votos.domain.CPFResponse;
 import br.com.guinodo.votos.repository.CpfRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 public class CPFClient implements CpfRepository {
 
-//  TODO Implementar
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Value("${api.cpf.url}")
+    private String API_CPF_URL;
+
     @Override
     public CPFResponse find(String cpf) {
-        return null;
+        return restTemplate.getForObject(API_CPF_URL+"/"+cpf, CPFResponse.class);
     }
 }
