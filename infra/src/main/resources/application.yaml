@@ -20,6 +20,10 @@ spring:
     deserialization:
       fail-on-unknown-properties: false
 
+springfox:
+  documentation:
+    enabled: true
+
 server:
   servlet:
     context-path: /api
