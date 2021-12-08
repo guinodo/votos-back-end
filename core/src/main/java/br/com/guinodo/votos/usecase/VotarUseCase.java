@@ -2,6 +2,7 @@ package br.com.guinodo.votos.usecase;
 
 import br.com.guinodo.votos.domain.CPFResponse;
 import br.com.guinodo.votos.domain.Voto;
+import br.com.guinodo.votos.exception.BusinessException;
 import br.com.guinodo.votos.repository.CpfRepository;
 import br.com.guinodo.votos.repository.VotoRepository;
 
@@ -12,8 +13,7 @@ public class VotarUseCase {
 
     public VotarUseCase(
         VotoRepository votoRepository,
-        CpfRepository cpfRepository
-    ){
+        CpfRepository cpfRepository){
         this.votoRepository = votoRepository;
         this.cpfRepository = cpfRepository;
     }
@@ -23,12 +23,11 @@ public class VotarUseCase {
         CPFResponse cpfResponse = cpfRepository.find(voto.getAssociado().getCpf());
 
         if(cpfResponse.getStatus().equals("ABLE_TO_VOTE")){
-            votoRepository.save(voto);
+            return votoRepository.save(voto);
         } else {
-            throw new RuntimeException("Associado ja votou");
+            throw new BusinessException(String.format("Usuario ja votou na palta: %s", voto.getPauta().getNome()));
         }
 
-        return voto;
     }
 
 }

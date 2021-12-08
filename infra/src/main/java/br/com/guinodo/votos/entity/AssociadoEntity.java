@@ -18,7 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ASSOCIADO_ENTITY")
+@Table(name = "ASSOCIADO")
 @Getter
 @Setter
 @NoArgsConstructor

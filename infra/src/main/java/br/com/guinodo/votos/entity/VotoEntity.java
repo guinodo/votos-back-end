@@ -37,12 +37,12 @@ public class VotoEntity implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "voto_pauta")
-    private Pauta pauta;
+    @JoinColumn(name = "ID_PAUTA")
+    private PautaEntity pauta;
 
     @ManyToOne
-    @JoinColumn(name = "voto_associado")
-    private Associado associado;
+    @JoinColumn(name = "ID_ASSOCIADO")
+    private AssociadoEntity associado;
 
     @Column(name = "TIPO_VOTO")
     @Enumerated(EnumType.STRING)
@@ -51,8 +51,8 @@ public class VotoEntity implements Serializable {
     public static VotoEntity from(Voto voto) {
         return new VotoEntity(
                 voto.getId(),
-                voto.getPauta(),
-                voto.getAssociado(),
+                PautaEntity.from(voto.getPauta()),
+                AssociadoEntity.from(voto.getAssociado()),
                 voto.getTipoVoto()
         );
     }
@@ -60,8 +60,8 @@ public class VotoEntity implements Serializable {
     public Voto fromThis() {
         return new Voto(
                 id,
-                pauta,
-                associado,
+                pauta.fromThis(),
+                associado.fromThis(),
                 tipoVoto
 
         );
