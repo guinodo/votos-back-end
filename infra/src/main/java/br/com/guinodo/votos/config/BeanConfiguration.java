@@ -1,7 +1,10 @@
 package br.com.guinodo.votos.config;
 
 import br.com.guinodo.votos.http.client.CPFClient;
+import br.com.guinodo.votos.repository.AssociadoRepository;
+import br.com.guinodo.votos.repository.AssociadoRepositoryImpl;
 import br.com.guinodo.votos.repository.CpfRepository;
+import br.com.guinodo.votos.repository.JpaAssociadoRepository;
 import br.com.guinodo.votos.repository.JpaPautaRepository;
 import br.com.guinodo.votos.repository.JpaVotoRepository;
 import br.com.guinodo.votos.repository.PautaRepository;
@@ -35,6 +38,11 @@ public class BeanConfiguration {
     }
 
     @Bean
+    public AssociadoRepository associadoRepository(JpaAssociadoRepository repository) {
+        return new AssociadoRepositoryImpl(repository);
+    }
+
+    @Bean
     public CpfRepository cpfRepository() {
         return new CPFClient();
     }
@@ -48,9 +56,11 @@ public class BeanConfiguration {
     @Bean
     public VotarUseCase votarUseCase(
         VotoRepository votoRepository,
-        CpfRepository cpfRepository
+        CpfRepository cpfRepository,
+        PautaRepository pautaRepository,
+        AssociadoRepository associadoRepository
     ) {
-        return new VotarUseCase(votoRepository, cpfRepository);
+        return new VotarUseCase(votoRepository, cpfRepository, pautaRepository, associadoRepository);
     }
 
     @Bean
