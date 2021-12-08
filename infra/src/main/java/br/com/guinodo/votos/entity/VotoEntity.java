@@ -1,6 +1,9 @@
 package br.com.guinodo.votos.entity;
 
+import br.com.guinodo.votos.domain.Associado;
+import br.com.guinodo.votos.domain.Pauta;
 import br.com.guinodo.votos.domain.TipoVoto;
+import br.com.guinodo.votos.domain.Voto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +16,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -31,8 +36,35 @@ public class VotoEntity implements Serializable {
     @Column(name = "ID")
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "voto_pauta")
+    private Pauta pauta;
+
+    @ManyToOne
+    @JoinColumn(name = "voto_associado")
+    private Associado associado;
+
     @Column(name = "TIPO_VOTO")
     @Enumerated(EnumType.STRING)
     private TipoVoto tipoVoto;
+
+    public static VotoEntity from(Voto voto) {
+        return new VotoEntity(
+                voto.getId(),
+                voto.getPauta(),
+                voto.getAssociado(),
+                voto.getTipoVoto()
+        );
+    }
+
+    public Voto fromThis() {
+        return new Voto(
+                id,
+                pauta,
+                associado,
+                tipoVoto
+
+        );
+    }
 
 }

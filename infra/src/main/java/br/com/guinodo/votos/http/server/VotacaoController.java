@@ -20,7 +20,7 @@ public class VotacaoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    private ResponseEntity<?> vote(@RequestBody final Voto voto) {
+    private ResponseEntity<?> votar(@RequestBody final Voto voto) {
         return ResponseEntity.ok(votarUseCase.votar(voto));
     }
 

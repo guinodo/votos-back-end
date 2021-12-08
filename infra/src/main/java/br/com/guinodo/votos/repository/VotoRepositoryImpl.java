@@ -14,7 +14,7 @@ public class VotoRepositoryImpl implements VotoRepository {
     }
 
     @Override
-    public void save(Voto voto) {
-        repository.save(new VotoEntity());
+    public Voto save(Voto voto) {
+        return repository.save(VotoEntity.from(voto)).fromThis();
     }
 }
