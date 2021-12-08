@@ -11,6 +11,8 @@ import br.com.guinodo.votos.repository.PautaRepository;
 import br.com.guinodo.votos.repository.VotoRepository;
 import br.com.guinodo.votos.service.CpfService;
 
+import java.time.LocalDateTime;
+
 public class VotarUseCase {
 
     private final VotoRepository votoRepository;
@@ -34,9 +36,11 @@ public class VotarUseCase {
 
     public Voto votar(Voto voto) {
 
-        cpfService.validarCpf(voto.getAssociado().getCpf());
+
         Associado associado = associadoRepository.findById(voto.getAssociado().getId());
         Pauta pauta = pautaRepository.findById(voto.getPauta().getId());
+
+        validarVoto(voto, pauta);
 
         CPFResponse cpfResponse = cpfRepository.find(voto.getAssociado().getCpf());
 
@@ -44,7 +48,18 @@ public class VotarUseCase {
             voto.setAssociado(associado);
             return votoRepository.save(voto);
         } else {
-            throw new BusinessException(String.format("Usuario ja votou na palta: %s", pauta.getNome()));
+            throw new BusinessException(String.format("Usuario ja votou na pauta: %s", pauta.getNome()));
+        }
+
+    }
+
+    private void validarVoto(Voto voto, Pauta pauta){
+
+        cpfService.validarCpf(voto.getAssociado().getCpf());
+
+        LocalDateTime now = LocalDateTime.now();
+        if(!(now.isAfter(pauta.getDataInicio()) && now.isBefore(pauta.getDataFim()))){
+            throw new BusinessException(String.format("Periodo de votacao encerrado para a pauta: %s", pauta.getNome()));
         }
 
     }
