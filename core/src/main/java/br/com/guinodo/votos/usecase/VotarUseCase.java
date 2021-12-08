@@ -9,6 +9,7 @@ import br.com.guinodo.votos.repository.AssociadoRepository;
 import br.com.guinodo.votos.repository.CpfRepository;
 import br.com.guinodo.votos.repository.PautaRepository;
 import br.com.guinodo.votos.repository.VotoRepository;
+import br.com.guinodo.votos.service.CpfService;
 
 public class VotarUseCase {
 
@@ -16,20 +17,24 @@ public class VotarUseCase {
     private final PautaRepository pautaRepository;
     private final AssociadoRepository associadoRepository;
     private final CpfRepository cpfRepository;
+    private final CpfService cpfService;
 
     public VotarUseCase(
         VotoRepository votoRepository,
         CpfRepository cpfRepository,
         PautaRepository pautaRepository,
-        AssociadoRepository associadoRepository){
+        AssociadoRepository associadoRepository,
+        CpfService cpfService){
         this.votoRepository = votoRepository;
         this.cpfRepository = cpfRepository;
         this.pautaRepository = pautaRepository;
         this.associadoRepository = associadoRepository;
+        this.cpfService = cpfService;
     }
 
     public Voto votar(Voto voto) {
 
+        cpfService.validarCpf(voto.getAssociado().getCpf());
         Associado associado = associadoRepository.findById(voto.getAssociado().getId());
         Pauta pauta = pautaRepository.findById(voto.getPauta().getId());
 

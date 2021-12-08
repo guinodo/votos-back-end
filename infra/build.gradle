@@ -27,6 +27,8 @@ dependencies {
     implementation(project(':domain'))
     implementation(project(':core'))
 
+    implementation("br.com.caelum.stella:caelum-stella-core:2.1.2")
+
     runtime('org.springframework.boot:spring-boot-devtools')
     runtime('com.h2database:h2')
 

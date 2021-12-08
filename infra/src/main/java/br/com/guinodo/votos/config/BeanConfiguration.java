@@ -1,5 +1,6 @@
 package br.com.guinodo.votos.config;
 
+import br.com.caelum.stella.validation.CPFValidator;
 import br.com.guinodo.votos.http.client.CPFClient;
 import br.com.guinodo.votos.repository.AssociadoRepository;
 import br.com.guinodo.votos.repository.AssociadoRepositoryImpl;
@@ -11,6 +12,8 @@ import br.com.guinodo.votos.repository.PautaRepository;
 import br.com.guinodo.votos.repository.PautaRepositoryImpl;
 import br.com.guinodo.votos.repository.VotoRepository;
 import br.com.guinodo.votos.repository.VotoRepositoryImpl;
+import br.com.guinodo.votos.service.CpfService;
+import br.com.guinodo.votos.service.CpfServiceImpl;
 import br.com.guinodo.votos.usecase.CadastroPautaUseCase;
 import br.com.guinodo.votos.usecase.VotarUseCase;
 import org.modelmapper.ModelMapper;
@@ -30,6 +33,16 @@ public class BeanConfiguration {
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
+    }
+
+    @Bean
+    public CPFValidator cpfValidator() {
+        return new CPFValidator();
+    }
+
+    @Bean
+    public CpfService cpfService(CPFValidator cpfValidator) {
+        return new CpfServiceImpl(cpfValidator);
     }
 
     @Bean
@@ -58,9 +71,10 @@ public class BeanConfiguration {
         VotoRepository votoRepository,
         CpfRepository cpfRepository,
         PautaRepository pautaRepository,
-        AssociadoRepository associadoRepository
+        AssociadoRepository associadoRepository,
+        CpfService cpfService
     ) {
-        return new VotarUseCase(votoRepository, cpfRepository, pautaRepository, associadoRepository);
+        return new VotarUseCase(votoRepository, cpfRepository, pautaRepository, associadoRepository, cpfService);
     }
 
     @Bean
