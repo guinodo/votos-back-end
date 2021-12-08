@@ -10,6 +10,7 @@ import br.com.guinodo.votos.repository.VotoRepository;
 import br.com.guinodo.votos.repository.VotoRepositoryImpl;
 import br.com.guinodo.votos.usecase.CadastroPautaUseCase;
 import br.com.guinodo.votos.usecase.VotarUseCase;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +25,11 @@ public class BeanConfiguration {
     }
 
     @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
+
+    @Bean
     public VotoRepository votoRepository(JpaVotoRepository repository) {
         return new VotoRepositoryImpl(repository);
     }
@@ -34,7 +40,8 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public PautaRepository pautaRepository(JpaPautaRepository repository) {
+    public PautaRepository pautaRepository(
+        JpaPautaRepository repository) {
         return new PautaRepositoryImpl(repository);
     }
 

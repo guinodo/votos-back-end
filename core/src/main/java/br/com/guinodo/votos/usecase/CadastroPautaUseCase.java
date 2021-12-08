@@ -11,8 +11,8 @@ public class CadastroPautaUseCase {
         this.pautaRepository = pautaRepository;
     }
 
-    public void cadastroPauta(Pauta pauta) {
-        this.pautaRepository.save(pauta);
+    public Pauta cadastroPauta(Pauta pauta) {
+        return pautaRepository.save(pauta);
     }
 
 }
