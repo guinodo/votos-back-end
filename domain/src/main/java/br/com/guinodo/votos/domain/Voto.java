@@ -14,7 +14,7 @@ import lombok.ToString;
 public class Voto {
 
     private Long id;
-    private Pauta pauta;
+    private SessaoVotacao sessao;
     private Associado associado;
     private TipoVoto tipoVoto;
 

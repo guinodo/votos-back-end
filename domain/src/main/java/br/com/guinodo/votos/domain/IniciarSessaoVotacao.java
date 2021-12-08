@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Pauta {
-    private Long id;
-    private String nome;
+public class IniciarSessaoVotacao {
+    private Long idPauta;
+    private Long periodo;
 }

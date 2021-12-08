@@ -37,8 +37,8 @@ public class VotoEntity implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "ID_PAUTA")
-    private PautaEntity pauta;
+    @JoinColumn(name = "ID_SESSAO_VOTACAO")
+    private SessaoVotacaoEntity sessao;
 
     @ManyToOne
     @JoinColumn(name = "ID_ASSOCIADO")
@@ -51,7 +51,7 @@ public class VotoEntity implements Serializable {
     public static VotoEntity from(Voto voto) {
         return new VotoEntity(
                 voto.getId(),
-                PautaEntity.from(voto.getPauta()),
+                new SessaoVotacaoEntity(voto.getSessao().getId()),
                 AssociadoEntity.from(voto.getAssociado()),
                 voto.getTipoVoto()
         );
@@ -60,7 +60,7 @@ public class VotoEntity implements Serializable {
     public Voto fromThis() {
         return new Voto(
                 id,
-                pauta.fromThis(),
+                sessao.fromThis(),
                 associado.fromThis(),
                 tipoVoto
 

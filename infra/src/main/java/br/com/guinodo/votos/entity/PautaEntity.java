@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "PAUTA")
@@ -31,28 +30,17 @@ public class PautaEntity implements Serializable {
     @Column(name = "NOME")
     private String nome;
 
-    @Column( name = "DATA_INICIO" )
-    private LocalDateTime dataInicio;
-
-    @Column( name = "DATA_FIM" )
-    private LocalDateTime dataFim;
-
     public static PautaEntity from(Pauta pauta) {
         return new PautaEntity(
             pauta.getId(),
-            pauta.getNome(),
-            pauta.getDataInicio(),
-            pauta.getDataFim()
+            pauta.getNome()
         );
     }
 
     public Pauta fromThis() {
         return new Pauta(
             id,
-            nome,
-            dataInicio,
-            dataFim
-
+            nome
         );
     }
 

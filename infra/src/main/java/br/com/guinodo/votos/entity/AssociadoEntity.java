@@ -25,6 +25,10 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class AssociadoEntity {
 
+    public AssociadoEntity(Long id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")

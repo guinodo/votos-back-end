@@ -2,7 +2,9 @@ package br.com.guinodo.votos.repository;
 
 import br.com.guinodo.votos.domain.Associado;
 import br.com.guinodo.votos.exception.BusinessException;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class AssociadoRepositoryImpl implements AssociadoRepository {
 
     private final JpaAssociadoRepository repository;

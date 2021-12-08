@@ -6,12 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Data
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Pauta {
+public class SessaoVotacao {
     private Long id;
-    private String nome;
+    private Pauta pauta;
+    private LocalDateTime dataInicio;
+    private LocalDateTime dataFim;
 }

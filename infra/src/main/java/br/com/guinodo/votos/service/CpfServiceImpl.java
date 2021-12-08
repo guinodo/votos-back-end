@@ -3,7 +3,9 @@ package br.com.guinodo.votos.service;
 import br.com.caelum.stella.validation.CPFValidator;
 import br.com.caelum.stella.validation.InvalidStateException;
 import br.com.guinodo.votos.exception.BusinessException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CpfServiceImpl implements CpfService {
 
     private final CPFValidator cpfValidator;

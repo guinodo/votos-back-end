@@ -4,7 +4,9 @@ import br.com.guinodo.votos.domain.Pauta;
 import br.com.guinodo.votos.entity.PautaEntity;
 import br.com.guinodo.votos.exception.BusinessException;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PautaRepositoryImpl implements PautaRepository {
 
     private final JpaPautaRepository repository;
